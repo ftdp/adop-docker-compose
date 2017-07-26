@@ -262,6 +262,7 @@ services:
       # - "8080"
       # - "50000"
     privileged: true
+    volumes:
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
@@ -450,12 +451,11 @@ volumes:
   sensu_client_conf:
   sensu_rabbitmq_data:
   sensu_redis_data:
-  onar_mysql_data:
+  sonar_mysql_data:
   sonar_data:
   sonar_extensions:
   sonar_logs:
   jenkins_slave_home:
-  /var/run/docker.sock:
   jenkins_home:
   nexus_sonatype_work:
   registry_certs:
