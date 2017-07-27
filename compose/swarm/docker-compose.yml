@@ -120,6 +120,7 @@ services:
     networks:
       - ${CUSTOM_NETWORK_NAME}
     environment:
+      SENSU_HOSTNAME: sensu-api
       SENSU_DC_NAME: Sensu
 
   sensu-api:
