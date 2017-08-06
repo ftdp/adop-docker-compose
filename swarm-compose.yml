@@ -139,7 +139,7 @@ services:
           - node.role == manager
 
   ldap:
-    image: accenture/accenture-ldap:0.2.0
+    image: accenture/adop-ldap:0.2.0
     depends_on:
       - "elasticsearch"
       - "logstash"
