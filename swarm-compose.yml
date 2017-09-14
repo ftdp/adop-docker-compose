@@ -103,6 +103,7 @@ services:
     volumes:
       - nginx_config:/etc/nginx
       - nginx_releasenote:/usr/share/nginx/html
+      - nginx_ssl:/etc/nginx/ssl
     logging:
       driver: "syslog"
       options:

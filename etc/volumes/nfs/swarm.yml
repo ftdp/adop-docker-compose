@@ -11,6 +11,10 @@ volumes:
     driver: nfs
     driver_opts:
       share: "${NFS_HOST}:${NFS_FOLDER}/nginx_releasenote"
+  nginx_ssl:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/nginx_ssl"
   ldap_db:
     driver: nfs
     driver_opts:
