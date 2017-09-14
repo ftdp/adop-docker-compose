@@ -75,7 +75,8 @@ services:
         condition: any
 
   proxy:
-    image: accenture/adop-nginx:latest
+    image: lumaks/adop-nginx:official
+    # image: accenture/adop-nginx:latest
     depends_on:
       - "elasticsearch"
       - "logstash"
@@ -85,6 +86,10 @@ services:
       - "443:443"
     environment:
       - "constraint:tier==public"
+      - "NGINX_PORT=${NGINX_PORT}"
+      - "NGINX_SSL=${NGINX_SSL}"
+      - "REDIRECT_PROTOCOL=${REDIRECT_PROTOCOL}"
+      - "LDAP_PROTOCOL=${LDAP_PROTOCOL}"
       - "LDAP_SERVER=${LDAP_SERVER}"
       - "LDAP_USERNAME=${LDAP_ADMIN},${LDAP_FULL_DOMAIN}"
       - "LDAP_PASSWORD=${LDAP_PWD}"
@@ -92,6 +97,9 @@ services:
       - "LDAP_GROUP_ATTRIBUTE=member"
       - "LDAP_USER_ID_ATTRIBUTE=cn"
       - "LDAP_USER_OBJECT_CLASS=inetOrgPerson"
+      - "http_proxy"
+      - "https_proxy"
+      - "no_proxy"
     volumes:
       - nginx_config:/etc/nginx
       - nginx_releasenote:/usr/share/nginx/html
@@ -205,6 +213,9 @@ services:
       - "USER_NAME=${GERRIT_USER_NAME}"
       - "USER_EMAIL=${GERRIT_USER_EMAIL}"
       - "DOWNLOAD_SCHEME=http"
+      - "http_proxy"
+      - "https_proxy"
+      - "no_proxy"
     volumes:
       - git_repos:/var/git/repos
       - gerrit_review_site:/var/gerrit/review_site
@@ -231,6 +242,9 @@ services:
     environment:
       SENSU_HOSTNAME: sensu-api
       SENSU_DC_NAME: Sensu
+      http_proxy:
+      https_proxy:
+      no_proxy:
     logging:
       driver: "syslog"
       options:
@@ -425,7 +439,7 @@ services:
         condition: any
 
   sonar:
-    image: accenture/adop-sonar:0.2.0
+    image: accenture/adop-sonar:0.3.2
     depends_on:
       - "elasticsearch"
       - "logstash"
@@ -445,6 +459,9 @@ services:
       - "LDAP_GROUP_REQUEST=(&(objectClass=groupOfUniqueNames)(uniqueMember={dn}))"
       - "LDAP_GROUP_ID_ATTRIBUTE=cn"
       - "SONARQUBE_JDBC_URL=jdbc:mysql://sonar-mysql:3306/${SONAR_MYSQL_DATABASE}?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true"
+      - "http_proxy"
+      - "https_proxy"
+      - "no_proxy"
     volumes:
       - sonar_data:/opt/sonarqube/data
       - sonar_extensions:/opt/sonarqube/extensions
@@ -515,6 +532,10 @@ services:
       DOCKER_CLIENT_CERT_PATH: ${DOCKER_CLIENT_CERT_PATH}
       DOCKER_NETWORK_NAME: ${CUSTOM_NETWORK_NAME}
       CARTRIDGE_SOURCES: ${CARTRIDGE_SOURCES}
+      JAVA_OPTS: "-Dhttp.proxyHost=${HTTP_PROXY_HOST} -Dhttp.proxyPort=${HTTP_PROXY_PORT} -Dhttps.proxyHost=${HTTPS_PROXY_HOST} -Dhttps.proxyPort=${HTTPS_PROXY_PORT} -Dhttp.nonProxyHosts=${HTTP_NON_PROXY_PORTS}"
+      http_proxy:
+      https_proxy:
+      no_proxy:
     volumes:
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
@@ -586,6 +607,10 @@ services:
       DOCKER_CLIENT_CERT_PATH: ${DOCKER_CLIENT_CERT_PATH}
       DOCKER_NETWORK_NAME: ${CUSTOM_NETWORK_NAME}
       CARTRIDGE_SOURCES: ${CARTRIDGE_SOURCES}
+      JAVA_OPTS: "-Dhttp.proxyHost=${HTTP_PROXY_HOST} -Dhttp.proxyPort=${HTTP_PROXY_PORT} -Dhttps.proxyHost=${HTTPS_PROXY_HOST} -Dhttps.proxyPort=${HTTPS_PROXY_PORT} -Dhttp.nonProxyHosts=${HTTP_NON_PROXY_PORTS}"
+      http_proxy:
+      https_proxy:
+      no_proxy:
     volumes:
       - jenkins_slave_home:/workspace
       - /var/run/docker.sock:/var/run/docker.sock
@@ -750,6 +775,9 @@ services:
       LDAP_USER_BASE_DN: "${LDAP_USER_BASE_DN}"
       LDAP_GROUP_BASE_DN: "${LDAP_GROUP_BASE_DN}"
       LDAP_BIND_PASSWORD: ${LDAP_PWD}
+      http_proxy:
+      https_proxy:
+      no_proxy:
     volumes:
       - nexus_sonatype_work:/sonatype-work
     logging:
