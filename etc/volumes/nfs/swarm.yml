@@ -1,0 +1,98 @@
+volumes:
+  elasticsearch_data:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/elasticsearch_data"
+  nginx_config:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/nginx_config"
+  nginx_releasenote:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/nginx_releasenote"
+  ldap_db:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/ldap_db"
+  ldap_static:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/ldap_static"
+  gerrit_mysql_data:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/gerrit_mysql_data"
+  git_repos:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/git_repos"
+  gerrit_review_site:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/gerrit_review_site"
+  sensu_api_conf:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/sensu_api_conf"
+  sensu_server_conf:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/sensu_server_conf"
+  sensu_server_check:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/sensu_server_check"
+  sensu_client_conf:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/sensu_client_conf"
+  sensu_rabbitmq_data:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/sensu_rabbitmq_data"
+  sensu_redis_data:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/sensu_redis_data"
+  sonar_mysql_data:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/sonar_mysql_data"
+  sonar_data:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/sonar_data"
+  sonar_extensions:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/sonar_extensions"
+  sonar_logs:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/sonar_logs"
+  jenkins_slave_home:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/jenkins_slave_home"
+  jenkins_home:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/jenkins_home"
+  jenkins_usr:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/jenkins_usr"
+  nexus_sonatype_work:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/nexus_sonatype_work"
+  registry_certs:
+    external: true
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/registry_certs"
+  registry_data:
+    driver: nfs
+    driver_opts:
+      share: "${NFS_HOST}:${NFS_FOLDER}/registry_data"

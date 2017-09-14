@@ -1,87 +1,87 @@
 proxy:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/nginx_config:/etc/nginx
-    - ${NFS_HOST}/nfs/nginx_releasenote:/usr/share/nginx/html
+    - ${NFS_HOST}${NFS_FOLDER}/nginx_config:/etc/nginx
+    - ${NFS_HOST}${NFS_FOLDER}/nginx_releasenote:/usr/share/nginx/html
 
 ldap:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/ldap_db:/var/lib/ldap
-    - ${NFS_HOST}/nfs/ldap_static:/etc/ldap
+    - ${NFS_HOST}${NFS_FOLDER}/ldap_db:/var/lib/ldap
+    - ${NFS_HOST}${NFS_FOLDER}/ldap_static:/etc/ldap
 
 gerrit-mysql:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/gerrit_mysql_data:/var/lib/mysql
+    - ${NFS_HOST}${NFS_FOLDER}/gerrit_mysql_data:/var/lib/mysql
 
 gerrit:
   user: root
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/git_repos:/var/git/repos 
-    - ${NFS_HOST}/nfs/gerrit_review_site:/var/gerrit/review_site 
+    - ${NFS_HOST}${NFS_FOLDER}/git_repos:/var/git/repos
+    - ${NFS_HOST}${NFS_FOLDER}/gerrit_review_site:/var/gerrit/review_site
 
 sensu-api:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/sensu_api_conf:/etc/sensu/conf.d
+    - ${NFS_HOST}${NFS_FOLDER}/sensu_api_conf:/etc/sensu/conf.d
 
 sensu-server:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/sensu_server_conf:/etc/sensu/conf.d
+    - ${NFS_HOST}${NFS_FOLDER}/sensu_server_conf:/etc/sensu/conf.d
 
 sensu-client:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/sensu_client_conf:/etc/sensu/conf.d
+    - ${NFS_HOST}${NFS_FOLDER}/sensu_client_conf:/etc/sensu/conf.d
 
 sensu-rabbitmq:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/sensu_rabbitmq_data:/var/lib/rabbitmq
+    - ${NFS_HOST}${NFS_FOLDER}/sensu_rabbitmq_data:/var/lib/rabbitmq
 
 sensu-redis:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/sensu_redis_data:/data
+    - ${NFS_HOST}${NFS_FOLDER}/sensu_redis_data:/data
 
 sonar-mysql:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/sonar_mysql_data:/var/lib/mysql 
+    - ${NFS_HOST}${NFS_FOLDER}/sonar_mysql_data:/var/lib/mysql
 
 sonar:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/sonar_data:/opt/sonarqube/data
-    - ${NFS_HOST}/nfs/sonar_extensions:/opt/sonarqube/extensions
-    - ${NFS_HOST}/nfs/sonar_logs:/opt/sonarqube/logs
+    - ${NFS_HOST}${NFS_FOLDER}/sonar_data:/opt/sonarqube/data
+    - ${NFS_HOST}${NFS_FOLDER}/sonar_extensions:/opt/sonarqube/extensions
+    - ${NFS_HOST}${NFS_FOLDER}/sonar_logs:/opt/sonarqube/logs
 
 jenkins:
-  user: root 
+  user: root
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/jenkins_home:/var/jenkins_home 
+    - ${NFS_HOST}${NFS_FOLDER}/jenkins_home:/var/jenkins_home
 
 selenium-node-chrome:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/selenium_config:/var/selenium-config
+    - ${NFS_HOST}${NFS_FOLDER}/selenium_config:/var/selenium-config
 
 selenium-node-firefox:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/selenium_config:/var/selenium-config
+    - ${NFS_HOST}${NFS_FOLDER}/selenium_config:/var/selenium-config
 
 nexus:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/nexus_sonatype_work:/sonatype-work
+    - ${NFS_HOST}${NFS_FOLDER}/nexus_sonatype_work:/sonatype-work
 
 registry:
   volume_driver: nfs
   volumes:
-    - ${NFS_HOST}/nfs/registry_certs:/certs
-    - ${NFS_HOST}/nfs/registry_data:/data
+    - ${NFS_HOST}${NFS_FOLDER}/registry_certs:/certs
+    - ${NFS_HOST}${NFS_FOLDER}/registry_data:/data

@@ -8,34 +8,6 @@ networks:
     external:
       name: ${CUSTOM_NETWORK_NAME}
 
-volumes:
-  elasticsearch_data:
-  nginx_config:
-  nginx_releasenote:
-  ldap_db:
-  ldap_static:
-  gerrit_mysql_data:
-  git_repos:
-  gerrit_review_site:
-  sensu_api_conf:
-  sensu_server_conf:
-  sensu_server_check:
-  sensu_client_conf:
-  sensu_rabbitmq_data:
-  sensu_redis_data:
-  sonar_mysql_data:
-  sonar_data:
-  sonar_extensions:
-  sonar_logs:
-  jenkins_slave_home:
-  jenkins_home:
-  jenkins_home:
-  jenkins_usr:
-  nexus_sonatype_work:
-  registry_certs:
-    external: true
-  registry_data:
-
 services:
   elasticsearch:
     image: elasticsearch:2.1.1

@@ -61,3 +61,6 @@ export PROTO="http"
 
 # Registry Certs
 export REGISTRY_CERT_VOL="registry_certs"
+
+# FOLDER on NFS SHARE (used onnly if NFS_HOST is defined)
+export NFS_FOLDER="//nfs"
