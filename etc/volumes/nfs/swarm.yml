@@ -167,8 +167,8 @@ volumes:
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/"
-external: tru  registry_data:
+      device: ":${NFS_FOLDER}/registry_certs"
+  registry_data:
     driver: local
     name: registry_data
     driver_opts:
