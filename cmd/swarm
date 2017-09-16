@@ -41,7 +41,7 @@ prep_env() {
 
 create_volume_and_network() {
   if [ -n ${NFS_HOST+x} ]; then
-    docker volume create --driver=nfs --name $REGISTRY_CERT_VOL -o share=$NFS_HOST:$NFS_FOLDER
+    docker volume create --driver local --opt type=nfs --opt o=addr=$NFS_HOST,rw --opt device=:$NFS_FOLDER/$REGISTRY_CERT_VOL --name $REGISTRY_CERT_VOL
     VOLUME_DRIVER="nfs"
   else
     docker volume create $REGISTRY_CERT_VOL

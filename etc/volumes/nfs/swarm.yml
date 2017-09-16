@@ -1,102 +1,177 @@
 volumes:
   elasticsearch_data:
-    driver: nfs
+    driver: local
+    name: elasticsearch_data
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/elasticsearch_data"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/elasticsearch_data"
   nginx_config:
-    driver: nfs
+    driver: local
+    name: nginx_config
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/nginx_config"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/nginx_config"
   nginx_releasenote:
-    driver: nfs
+    driver: local
+    name: nginx_releasenote
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/nginx_releasenote"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/nginx_releasenote"
   nginx_ssl:
-    driver: nfs
+    driver: local
+    name: nginx_ssl
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/nginx_ssl"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/nginx_ssl"
   ldap_db:
-    driver: nfs
+    driver: local
+    name: ldap_db
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/ldap_db"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/ldap_db"
   ldap_static:
-    driver: nfs
+    driver: local
+    name: ldap_static
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/ldap_static"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/ldap_static"
   gerrit_mysql_data:
-    driver: nfs
+    driver: local
+    name: gerrit_mysql_data
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/gerrit_mysql_data"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/gerrit_mysql_data"
   git_repos:
-    driver: nfs
+    driver: local
+    name: git_repos
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/git_repos"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/git_repos"
   gerrit_review_site:
-    driver: nfs
+    driver: local
+    name: gerrit_review_site
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/gerrit_review_site"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/gerrit_review_site"
   sensu_api_conf:
-    driver: nfs
+    driver: local
+    name: sensu_api_conf
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/sensu_api_conf"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/sensu_api_conf"
   sensu_server_conf:
-    driver: nfs
+    driver: local
+    name: sensu_server_conf
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/sensu_server_conf"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/sensu_server_conf"
   sensu_server_check:
-    driver: nfs
+    driver: local
+    name: sensu_server_check
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/sensu_server_check"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/sensu_server_check"
   sensu_client_conf:
-    driver: nfs
+    driver: local
+    name: sensu_client_conf
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/sensu_client_conf"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/sensu_client_conf"
   sensu_rabbitmq_data:
-    driver: nfs
+    driver: local
+    name: sensu_rabbitmq_data
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/sensu_rabbitmq_data"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/sensu_rabbitmq_data"
   sensu_redis_data:
-    driver: nfs
+    driver: local
+    name: sensu_redis_data
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/sensu_redis_data"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/sensu_redis_data"
   sonar_mysql_data:
-    driver: nfs
+    driver: local
+    name: sonar_mysql_data
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/sonar_mysql_data"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/sonar_mysql_data"
   sonar_data:
-    driver: nfs
+    driver: local
+    name: sonar_data
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/sonar_data"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/sonar_data"
   sonar_extensions:
-    driver: nfs
+    driver: local
+    name: sonar_extensions
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/sonar_extensions"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/sonar_extensions"
   sonar_logs:
-    driver: nfs
+    driver: local
+    name: sonar_logs
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/sonar_logs"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/sonar_logs"
   jenkins_slave_home:
-    driver: nfs
+    driver: local
+    name: jenkins_slave_home
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/jenkins_slave_home"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/jenkins_slave_home"
   jenkins_home:
-    driver: nfs
+    driver: local
+    name: jenkins_home
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/jenkins_home"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/jenkins_home"
   jenkins_usr:
-    driver: nfs
+    driver: local
+    name: jenkins_usr
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/jenkins_usr"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/jenkins_usr"
   nexus_sonatype_work:
-    driver: nfs
+    driver: local
+    name: nexus_sonatype_work
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/nexus_sonatype_work"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/nexus_sonatype_work"
   registry_certs:
     external: true
-    driver: nfs
+    driver: local
+    name: registry_certs
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/registry_certs"
-  registry_data:
-    driver: nfs
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/"
+external: tru  registry_data:
+    driver: local
+    name: registry_data
     driver_opts:
-      share: "${NFS_HOST}:${NFS_FOLDER}/registry_data"
+      type: nfs
+      o: "addr=${NFS_HOST},rw"
+      device: ":${NFS_FOLDER}/registry_data"
