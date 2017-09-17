@@ -105,10 +105,10 @@ services:
       - nginx_releasenote:/usr/share/nginx/html
       - nginx_ssl:/etc/nginx/ssl
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "proxy"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "proxy"
     deploy:
       replicas: 1
       update_config:
@@ -140,10 +140,10 @@ services:
       - ldap_db:/var/lib/ldap
       - ldap_static:/etc/ldap
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "ldap"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "ldap"
     deploy:
       replicas: 1
       update_config:
@@ -166,10 +166,10 @@ services:
     volumes:
       - gerrit_mysql_data:/var/lib/mysql
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "gerrit-mysql"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "gerrit-mysql"
     deploy:
       replicas: 1
       update_config:
@@ -222,10 +222,10 @@ services:
       - gerrit_review_site:/var/gerrit/review_site
     user: root
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "gerrit"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "gerrit"
     deploy:
       replicas: 1
       update_config:
@@ -247,10 +247,10 @@ services:
       https_proxy:
       no_proxy:
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "sensu-uchiwa"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "sensu-uchiwa"
     deploy:
       replicas: 1
       update_config:
@@ -273,10 +273,10 @@ services:
     volumes:
       - sensu_api_conf:/etc/sensu/conf.d
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "sensu-api"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "sensu-api"
     deploy:
       replicas: 1
       update_config:
@@ -301,10 +301,10 @@ services:
       - sensu_server_conf:/etc/sensu/conf.d
       - sensu_server_check:/etc/sensu/check.d
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "sensu-server"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "sensu-server"
     deploy:
       replicas: 1
       update_config:
@@ -330,10 +330,10 @@ services:
     volumes:
       - sensu_client_conf:/etc/sensu/conf.d
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "sensu-client"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "sensu-client"
     deploy:
       replicas: 1
       update_config:
@@ -359,10 +359,10 @@ services:
     volumes:
       - sensu_client_conf:/etc/sensu/conf.d
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "sensu-client"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "sensu-client"
     deploy:
       mode: global
       update_config:
@@ -380,10 +380,10 @@ services:
     volumes:
       - sensu_rabbitmq_data:/var/lib/rabbitmq
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "sensu-rabbitmq"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "sensu-rabbitmq"
     deploy:
       replicas: 1
       update_config:
@@ -401,10 +401,10 @@ services:
     volumes:
       - sensu_redis_data:/data
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "sensu-redis"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "sensu-redis"
     deploy:
       replicas: 1
       update_config:
@@ -427,10 +427,10 @@ services:
     volumes:
       - sonar_mysql_data:/var/lib/mysql
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "sonar-mysql"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "sonar-mysql"
     deploy:
       replicas: 1
       update_config:
@@ -468,10 +468,10 @@ services:
       - sonar_extensions:/opt/sonarqube/extensions
       - sonar_logs:/opt/sonarqube/logs
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "sonar"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "sonar"
     deploy:
       replicas: 1
       update_config:
@@ -542,10 +542,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - jenkins_usr:/etc
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "jenkins"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "jenkins"
     deploy:
       replicas: 1
       update_config:
@@ -616,10 +616,10 @@ services:
       - jenkins_slave_home:/workspace
       - /var/run/docker.sock:/var/run/docker.sock
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "jenkins-slave"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "jenkins-slave"
     deploy:
       replicas: 1
       update_config:
@@ -635,10 +635,10 @@ services:
       - "logstash"
       - "kibana"
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "selenium-hub"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "selenium-hub"
     deploy:
       replicas: 1
       update_config:
@@ -659,10 +659,10 @@ services:
       HUB_PORT_4444_TCP_ADDR: "selenium-hub"
       HUB_PORT_4444_TCP_PORT: "4444"
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "selenium-node-chrome"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "selenium-node-chrome"
     deploy:
       replicas: 1
       update_config:
@@ -683,10 +683,10 @@ services:
       HUB_PORT_4444_TCP_ADDR: "selenium-hub"
       HUB_PORT_4444_TCP_PORT: "4444"
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "selenium-node-firefox"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "selenium-node-firefox"
     deploy:
       replicas: 1
       update_config:
@@ -748,10 +748,10 @@ services:
       - registry_certs:/certs
       - registry_data:/var/lib/registry
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "registry"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "registry"
     deploy:
       replicas: 1
       update_config:
@@ -785,10 +785,10 @@ services:
     volumes:
       - nexus_sonatype_work:/sonatype-work
     logging:
-      driver: "syslog"
-      options:
-        syslog-address: "udp://${LOGSTASH_HOST}:25826"
-        tag: "nexus"
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "nexus"
     deploy:
       replicas: 1
       update_config:
