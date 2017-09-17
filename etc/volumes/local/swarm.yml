@@ -23,5 +23,6 @@ volumes:
   jenkins_usr:
   nexus_sonatype_work:
   registry_certs:
-    external: true
+    external:
+      name: "${REGISTRY_CERT_VOL}"
   registry_data:
