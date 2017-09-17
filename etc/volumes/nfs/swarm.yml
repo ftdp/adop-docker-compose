@@ -138,7 +138,7 @@ volumes:
       o: "addr=${NFS_HOST},rw"
       device: ":${NFS_FOLDER}/${PLATFORM_NAME}_nexus_sonatype_work"
   registry_certs:
-    external: true
+    external:
       name: "${REGISTRY_CERT_VOL}"
   registry_data:
     driver: local
