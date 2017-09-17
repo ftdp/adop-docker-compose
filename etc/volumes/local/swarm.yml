@@ -2,6 +2,7 @@ volumes:
   elasticsearch_data:
   nginx_config:
   nginx_releasenote:
+  nginx_ssl:
   ldap_db:
   ldap_static:
   gerrit_mysql_data:
