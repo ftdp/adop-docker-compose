@@ -746,7 +746,7 @@ services:
       REGISTRY_HTTP_TLS_KEY: /certs/registry/privkey.pem
     volumes:
       - registry_certs:/certs
-      - registry_data:/data
+      - registry_data:/var/lib/registry
     logging:
       driver: "syslog"
       options:
