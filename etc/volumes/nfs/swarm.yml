@@ -139,11 +139,6 @@ volumes:
       device: ":${NFS_FOLDER}/nexus_sonatype_work"
   registry_certs:
     external: true
-    driver: local
-    driver_opts:
-      type: nfs
-      o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/registry_certs"
   registry_data:
     driver: local
     driver_opts:
