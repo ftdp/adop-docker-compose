@@ -1,7 +1,7 @@
 # set TARGET_HOST to dns/ip of proxy
 # set LOGSTASH_HOST to dns/ip of logstash host
 
-version: '3'
+version: '3.3'
 
 networks:
   default:
