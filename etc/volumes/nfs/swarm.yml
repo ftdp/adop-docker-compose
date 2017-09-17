@@ -1,172 +1,147 @@
 volumes:
   elasticsearch_data:
     driver: local
-    name: elasticsearch_data
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/elasticsearch_data"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_elasticsearch_data"
   nginx_config:
     driver: local
-    name: nginx_config
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/nginx_config"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_nginx_config"
   nginx_releasenote:
     driver: local
-    name: nginx_releasenote
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/nginx_releasenote"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_nginx_releasenote"
   nginx_ssl:
     driver: local
-    name: nginx_ssl
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/nginx_ssl"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_nginx_ssl"
   ldap_db:
     driver: local
-    name: ldap_db
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/ldap_db"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_ldap_db"
   ldap_static:
     driver: local
-    name: ldap_static
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/ldap_static"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_ldap_static"
   gerrit_mysql_data:
     driver: local
-    name: gerrit_mysql_data
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/gerrit_mysql_data"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_gerrit_mysql_data"
   git_repos:
     driver: local
-    name: git_repos
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/git_repos"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_git_repos"
   gerrit_review_site:
     driver: local
-    name: gerrit_review_site
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/gerrit_review_site"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_gerrit_review_site"
   sensu_api_conf:
     driver: local
-    name: sensu_api_conf
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/sensu_api_conf"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_sensu_api_conf"
   sensu_server_conf:
     driver: local
-    name: sensu_server_conf
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/sensu_server_conf"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_sensu_server_conf"
   sensu_server_check:
     driver: local
-    name: sensu_server_check
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/sensu_server_check"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_sensu_server_check"
   sensu_client_conf:
     driver: local
-    name: sensu_client_conf
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/sensu_client_conf"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_sensu_client_conf"
   sensu_rabbitmq_data:
     driver: local
-    name: sensu_rabbitmq_data
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/sensu_rabbitmq_data"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_sensu_rabbitmq_data"
   sensu_redis_data:
     driver: local
-    name: sensu_redis_data
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/sensu_redis_data"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_sensu_redis_data"
   sonar_mysql_data:
     driver: local
-    name: sonar_mysql_data
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/sonar_mysql_data"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_sonar_mysql_data"
   sonar_data:
     driver: local
-    name: sonar_data
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/sonar_data"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_sonar_data"
   sonar_extensions:
     driver: local
-    name: sonar_extensions
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/sonar_extensions"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_sonar_extensions"
   sonar_logs:
     driver: local
-    name: sonar_logs
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/sonar_logs"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_sonar_logs"
   jenkins_slave_home:
     driver: local
-    name: jenkins_slave_home
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/jenkins_slave_home"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_jenkins_slave_home"
   jenkins_home:
     driver: local
-    name: jenkins_home
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/jenkins_home"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_jenkins_home"
   jenkins_usr:
     driver: local
-    name: jenkins_usr
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/jenkins_usr"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_jenkins_usr"
   nexus_sonatype_work:
     driver: local
-    name: nexus_sonatype_work
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/nexus_sonatype_work"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_nexus_sonatype_work"
   registry_certs:
     external: true
-    name: registry_certs
   registry_data:
     driver: local
-    name: registry_data
     driver_opts:
       type: nfs
       o: "addr=${NFS_HOST},rw"
-      device: ":${NFS_FOLDER}/registry_data"
+      device: ":${NFS_FOLDER}/${PLATFORM_NAME}_registry_data"

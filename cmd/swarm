@@ -78,7 +78,7 @@ init() {
   cat etc/volumes/$VOLUME_DRIVER/swarm.yml >> swarm-compose.merged.yml
 
 	# Launches ADOP into the swarm.
-	docker stack deploy -c swarm-compose.merged.yml adop
+	docker stack deploy -c swarm-compose.merged.yml ${PLATFORM_NAME}
 
 
 	# Wait for Nginx to come up before proceeding

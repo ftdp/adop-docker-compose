@@ -59,6 +59,9 @@ export DOCKER_CLIENT_CERT_PATH="//root/.docker/"
 # SSL Settings
 export PROTO="http"
 
+# Platform(stack/project) name
+export PLATFORM_NAME="adop"
+
 # Registry Certs
 export REGISTRY_CERT_VOL="registry_certs"
 
