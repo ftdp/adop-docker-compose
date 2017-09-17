@@ -759,6 +759,9 @@ services:
         delay: 10s
       restart_policy:
         condition: any
+      placement:
+        constraints:
+          - node.role == manager
 
   nexus:
     image: accenture/adop-nexus:0.1.3

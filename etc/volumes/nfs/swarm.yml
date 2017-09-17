@@ -139,6 +139,7 @@ volumes:
       device: ":${NFS_FOLDER}/${PLATFORM_NAME}_nexus_sonatype_work"
   registry_certs:
     external: true
+      name: "${REGISTRY_CERT_VOL}"
   registry_data:
     driver: local
     driver_opts:
