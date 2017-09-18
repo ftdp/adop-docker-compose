@@ -7,9 +7,6 @@ networks:
   private:
     external:
       name: ${CUSTOM_NETWORK_NAME}
-  public:
-    external:
-      name: bridge
 
 services:
   elasticsearch:
@@ -109,36 +106,6 @@ services:
       - nginx_ssl:/etc/nginx/ssl
     networks:
       - private
-    logging:
-      driver: "journald"
-      # options:
-      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
-      #   tag: "proxy"
-    deploy:
-      replicas: 1
-      update_config:
-        parallelism: 1
-        delay: 10s
-      restart_policy:
-        condition: any
-      placement:
-        constraints:
-          - node.role == manager
-
-  outer-proxy:
-    image: accenture/adop-outer-proxy
-    ports:
-      - "80:80"
-      - "443:443"
-    environment:
-      - "constraint:tier==public"
-      - "TARGET=${INTERNAL_TARGET_HOST}"
-      - "http_proxy"
-      - "https_proxy"
-      - "no_proxy"
-    networks:
-      - private
-      - public
     logging:
       driver: "journald"
       # options:
