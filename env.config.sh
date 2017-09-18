@@ -67,3 +67,7 @@ export REGISTRY_CERT_VOL="registry_certs"
 
 # FOLDER on NFS SHARE (used onnly if NFS_HOST is defined)
 export NFS_FOLDER="//nfs"
+
+# Get internal target host for Swarm setup and outer-proxy
+# export INTERNAL_TARGET_HOST=$(ip -4 route get 8.8.8.8 | grep -Po '(?<=src )(\S+)')
+export INTERNAL_TARGET_HOST=""
