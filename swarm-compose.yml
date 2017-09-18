@@ -4,9 +4,12 @@
 version: '3.3'
 
 networks:
-  adop:
+  private:
     external:
       name: ${CUSTOM_NETWORK_NAME}
+  public:
+    external:
+      name: bridge
 
 services:
   elasticsearch:
@@ -17,7 +20,7 @@ services:
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
     networks:
-      - adop
+      - private
     deploy:
       replicas: 1
       update_config:
@@ -36,7 +39,7 @@ services:
       - "25826:25826/udp"
       - "5000:5000/tcp"
     networks:
-      - adop
+      - private
     deploy:
       replicas: 1
       update_config:
@@ -64,7 +67,7 @@ services:
     ports:
       - "5601:5601"
     networks:
-      - adop
+      - private
     deploy:
       replicas: 1
       update_config:
@@ -80,6 +83,7 @@ services:
       - "elasticsearch"
       - "logstash"
       - "kibana"
+      - "outer-proxy"
     ports:
       - "80:80"
       - "443:443"
@@ -104,7 +108,37 @@ services:
       - nginx_releasenote:/usr/share/nginx/html
       - nginx_ssl:/etc/nginx/ssl
     networks:
-      - adop
+      - private
+    logging:
+      driver: "journald"
+      # options:
+      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
+      #   tag: "proxy"
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+      placement:
+        constraints:
+          - node.role == manager
+
+  outer-proxy:
+    image: accenture/adop-outer-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - "constraint:tier==public"
+      - "TARGET=${LOGSTASH_HOST}"
+      - "http_proxy"
+      - "https_proxy"
+      - "no_proxy"
+    networks:
+      - private
+      - public
     logging:
       driver: "journald"
       # options:
@@ -141,7 +175,7 @@ services:
       - ldap_db:/var/lib/ldap
       - ldap_static:/etc/ldap
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -169,7 +203,7 @@ services:
     volumes:
       - gerrit_mysql_data:/var/lib/mysql
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -226,7 +260,7 @@ services:
       - git_repos:/var/git/repos
       - gerrit_review_site:/var/gerrit/review_site
     networks:
-      - adop
+      - private
     user: root
     logging:
       driver: "journald"
@@ -254,7 +288,7 @@ services:
       https_proxy:
       no_proxy:
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -282,7 +316,7 @@ services:
     volumes:
       - sensu_api_conf:/etc/sensu/conf.d
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -312,7 +346,7 @@ services:
       - sensu_server_conf:/etc/sensu/conf.d
       - sensu_server_check:/etc/sensu/check.d
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -343,7 +377,7 @@ services:
     volumes:
       - sensu_client_conf:/etc/sensu/conf.d
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -374,7 +408,7 @@ services:
     volumes:
       - sensu_client_conf:/etc/sensu/conf.d
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -397,7 +431,7 @@ services:
     volumes:
       - sensu_rabbitmq_data:/var/lib/rabbitmq
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -420,7 +454,7 @@ services:
     volumes:
       - sensu_redis_data:/data
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -448,7 +482,7 @@ services:
     volumes:
       - sonar_mysql_data:/var/lib/mysql
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -491,7 +525,7 @@ services:
       - sonar_extensions:/opt/sonarqube/extensions
       - sonar_logs:/opt/sonarqube/logs
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -567,7 +601,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - jenkins_usr:/etc
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -643,7 +677,7 @@ services:
       - jenkins_slave_home:/workspace
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -664,7 +698,7 @@ services:
       - "logstash"
       - "kibana"
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -690,7 +724,7 @@ services:
       HUB_PORT_4444_TCP_ADDR: "selenium-hub"
       HUB_PORT_4444_TCP_PORT: "4444"
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -716,7 +750,7 @@ services:
       HUB_PORT_4444_TCP_ADDR: "selenium-hub"
       HUB_PORT_4444_TCP_PORT: "4444"
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -742,7 +776,7 @@ services:
       LDAP_LTB_PWD: "${LDAP_PWD}"
       LDAP_LTB_BS: "${LDAP_FULL_DOMAIN}"
     networks:
-      - adop
+      - private
     deploy:
       replicas: 1
       update_config:
@@ -764,7 +798,7 @@ services:
       LDAP_SERVER_BIND_ID: "${LDAP_ADMIN},${LDAP_FULL_DOMAIN}"
       LDAP_SERVER_BASE_DN: "${LDAP_FULL_DOMAIN}"
     networks:
-      - adop
+      - private
     deploy:
       replicas: 1
       update_config:
@@ -787,7 +821,7 @@ services:
       - registry_certs:/certs
       - registry_data:/var/lib/registry
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
@@ -826,7 +860,7 @@ services:
     volumes:
       - nexus_sonatype_work:/sonatype-work
     networks:
-      - adop
+      - private
     logging:
       driver: "journald"
       # options:
