@@ -13,7 +13,7 @@ services:
     image: elasticsearch:2.1.1
     command: elasticsearch -Des.network.host=0.0.0.0
     ports:
-      - "9200:9200"
+      - "0.0.0.0:9200:9200"
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
     deploy:
@@ -30,9 +30,9 @@ services:
       - "constraint:tier==public"
       - LS_HEAP_SIZE=1024m
     ports:
-      - "12201:12201/udp"
-      - "25826:25826/udp"
-      - "5000:5000/tcp"
+      - "0.0.0.0:12201:12201/udp"
+      - "0.0.0.0:25826:25826/udp"
+      - "0.0.0.0:5000:5000/tcp"
     deploy:
       replicas: 1
       update_config:
@@ -58,7 +58,7 @@ services:
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
     ports:
-      - "5601:5601"
+      - "0.0.0.0:5601:5601"
     deploy:
       replicas: 1
       update_config:
@@ -82,8 +82,8 @@ services:
       - "logstash"
       - "kibana"
     ports:
-      - "80:80"
-      - "443:443"
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
     environment:
       - "constraint:tier==public"
       - "NGINX_PORT=${NGINX_PORT}"
@@ -127,7 +127,7 @@ services:
       - "logstash"
       - "kibana"
     ports:
-      - "389:389/tcp"
+      - "0.0.0.0:389:389/tcp"
     environment:
       INITIAL_ADMIN_USER: ${INITIAL_ADMIN_USER}
       INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD}
@@ -487,7 +487,7 @@ services:
       - "logstash"
       - "kibana"
     ports:
-      - "50000:50000/tcp"
+      - "0.0.0.0:50000:50000/tcp"
     environment:
       JENKINS_OPTS: "--prefix=/jenkins"
       ROOT_URL: "${PROTO}://${TARGET_HOST}/jenkins/"
