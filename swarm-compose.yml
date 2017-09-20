@@ -465,6 +465,7 @@ services:
 
   sonar:
     image: accenture/adop-sonar:0.3.2
+    command: "-Dhttp.proxyHost=${HTTP_PROXY_HOST} -Dhttp.proxyPort=${HTTP_PROXY_PORT} -Dhttps.proxyHost=${HTTPS_PROXY_HOST} -Dhttps.proxyPort=${HTTPS_PROXY_PORT} -Dhttp.nonProxyHosts=${HTTP_NON_PROXY_PORTS}"
     depends_on:
       - "elasticsearch"
       - "logstash"
@@ -812,6 +813,7 @@ services:
       - "logstash"
       - "kibana"
     environment:
+      CONTEXT_PATH: /nexus
       NEXUS_BASE_URL: "${PROTO}://${TARGET_HOST}/nexus"
       LDAP_SEARCH_BASE: "${LDAP_FULL_DOMAIN}"
       LDAP_ENABLED: "true"
