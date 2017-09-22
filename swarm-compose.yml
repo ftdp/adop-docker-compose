@@ -80,7 +80,6 @@ services:
       - "elasticsearch"
       - "logstash"
       - "kibana"
-      - "outer-proxy"
     ports:
       - "80:80"
       - "443:443"
@@ -572,9 +571,9 @@ services:
       - private
     logging:
       driver: "journald"
-      # options:
-      #   syslog-address: "udp://${LOGSTASH_HOST}:25826"
-      #   tag: "jenkins"
+      options:
+        syslog-address: "udp://${LOGSTASH_HOST}:25826"
+        tag: "jenkins"
     deploy:
       replicas: 1
       update_config:
