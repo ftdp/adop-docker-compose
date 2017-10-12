@@ -786,7 +786,7 @@ services:
       REGISTRY_HTTP_TLS_KEY: /certs/registry/privkey.pem
     volumes:
       - registry_certs:/certs
-      - registry_data:/var/lib/registry
+      - registry_data:/data
     networks:
       - private
     logging:
